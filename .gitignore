@@ -1,0 +1,12 @@
+# Client plan sets, reports, and renders stay local
+*.pdf
+*.PDF
+*.png
+*.PNG
+*.jpg
+*.JPG
+*.jpeg
+*.zip
+
+# Machine-local Claude settings
+.claude/settings.local.json
