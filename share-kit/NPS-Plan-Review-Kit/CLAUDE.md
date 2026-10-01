@@ -27,9 +27,10 @@ That phrase alone is a complete instruction. Open `<ProjectName>\<most-recent-da
 9. **Utility sheets: LF takeoff cross-check.** Sum the LF labels on plan per system and compare to the construction-note quantity column; count fitting bubbles too. This is how an undefined run gets *proved* rather than guessed.
 10. **Legal descriptions: traverse them, don't just proofread.** Parse each course from the POC, compute coordinates, report misclosure/precision and area, plot to PNG with courses labeled (matplotlib). Compare area to the site area used in the drainage report.
 11. **Hydraulic/hydrologic reports:** these usually *do* have a text layer, so `get_text()` + an old-vs-new text diff is the fastest first pass. Then recompute the model's internals from the figure labels (e.g. Hazen-Williams per link vs. the printed headloss). Summary tables sometimes print the value the model was *fitted to* instead of what it *produced*.
-12. **Write findings into the PDF** (format below), not as a chat summary.
-13. **Before/after any bulk annotation edit:** list, act, re-list, diff. Filter deletes on the most specific property (a unique tag in the content), never just author or subtype. Deleting the reviewer's own objects by accident is the worst failure here.
-14. **End with a short chat summary** pointing to the PDF and highlighting only what needs a human judgment call.
+12. **Memos and reports: check the design basis against the plan sheet.** A memo can be internally perfect and still analyze the wrong pipe. Compare size, slope, length and material in the memo to the construction notes on the plan. Then check the plan's values against the memo's own stated criteria. Also recheck every table lookup (e.g. peaking factor by flow range and new vs. existing line) and confirm every building on the site plan figure is in the flow table.
+13. **Write findings into the PDF** (format below), not as a chat summary.
+14. **Before/after any bulk annotation edit:** list, act, re-list, diff. Filter deletes on the most specific property (a unique tag in the content), never just author or subtype. Deleting the reviewer's own objects by accident is the worst failure here.
+15. **End with a short chat summary** pointing to the PDF and highlighting only what needs a human judgment call.
 
 ## Markup format (the deliverable)
 
@@ -42,6 +43,7 @@ That phrase alone is a complete instruction. Open `<ProjectName>\<most-recent-da
   Detail: <plain short sentences>
   ```
   Tags: `F<n>` my own findings, `C<n>`/`C<n>a` replies to the reviewer's notes, `BC-*` back-check items, plus one `BACK-CHECK SUMMARY` sticky. No-defect notes still get `Action item: None.`
+- **When the author is a named colleague and the user asks for a gentle review:** open with one thank-you sticky on the cover that names what is good and points to the single important finding. Keep each note to one or two sentences and start the action items with "Please". Mark style-only items `(optional)`. Defer real design changes to the senior engineers ("Let's talk with Tom and Plamen before you change the numbers") rather than prescribing a fix.
 - **Correcting my own earlier finding:** edit that annotation in place (`set_info`, `update`), prefix `[F7 - CORRECTED, supersedes my original F7]`. Don't add a second contradicting note.
 - **Non-default icons** (`icon="UpLeftArrow"` etc.): after `annot.update()`, run `doc.xref_set_key(annot.xref, 'AP', 'null')` or every extended icon renders as the same star.
 - **Once the reviewer says a PDF is going out "as is," stop editing it.**
@@ -115,4 +117,5 @@ NPS Global (npsge.org): no owners, part-time freelancers, small self-managed tea
 
 - **Round 1** `example\LDLPM\2026-08-09\LDLPM-C203-UTILITY-PLAN.pdf`: single utility sheet in an architect's title block (partial real text layer). Tom's green markups + Claude's F1-F17. The LF takeoff (sewer 817 LF, water 282 LF) is what proved the 78 LF bubble-53 run was a separate undefined item.
 - **Round 2** `example\LDLPM\2026-09-29\LDLPM-CIVIL.pdf`: 6-sheet "draft 1 permit application" set (C101-C204), 46 stickies: F1-F35 new, BC-* back-checks, one BACK-CHECK SUMMARY on C203. Tom's verdict: *"exactly what I want."* Highlights: wall top above FF; bleed-off drawn gravity but specified as pumped; water crossing labels putting pipe above grade; legal description with 7 duplicated courses (422 ft misclosure as written, 0.004 ft with the duplicate removed, area = the drainage report's 5.78 ac).
+- **Sewer memo** (not in the kit; 9-page report with a real text layer): written by a colleague, reviewed with gentle, short notes. The flow math checked, but the memo analyzed a 4" service at 2.08% while C203 showed a 6" at 0.57% over 796 LF, which fails the memo's own 2.5 fps full-flow and slope criteria. Other findings: Mesa Table 4.3 gives a peaking factor of 3 (not 2.5) for new lines under 1 mgd; an existing building was missing from the flow table; and an open question was left for the engineer: Mesa's public-sewer standards (Sec. 411) vs. the plumbing code for a private service.
 - **Practice:** `LDLPM-practice\` is round 2 with Claude's stickies removed (Tom's remain). "Review LDLPM-practice" should reproduce the example's shape; compare against `example\`.
