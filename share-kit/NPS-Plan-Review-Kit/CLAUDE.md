@@ -34,7 +34,7 @@ That phrase alone is a complete instruction. Open `<ProjectName>\<most-recent-da
 
 ## Markup format (the deliverable)
 
-- **One standalone sticky per finding, placed adjacent to its referent** (`page.add_text_annot(point, text)`, `title="Claude"`). Not reply threads (drafters can't find them), not FreeText callouts (eat plan real estate). Placement accuracy matters: derive coordinates from the rendered crop, don't estimate.
+- **One standalone sticky per finding, placed on the spot** (`page.add_text_annot(point, text)`, `title="Claude"`). Not reply threads (drafters can't find them), not FreeText callouts (eat plan real estate). Use the `UpLeftArrow` icon (17x17 rect) with the arrow tip, the rect's top-left corner, exactly on the referent: the start of the misspelled word, the label, the structure symbol, the pipe at the crossing. Derive each point from the high-res render (pdf = px / zoom). Before saving, render a ~100 pt clip around each point with a red cross, tile the clips, and nudge any that miss. Icons 1-2 inches off weaken the comment.
 - **Content format**, for readers who are often non-native English speakers:
   ```
   [F12 - DATA]
